@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
               itemCount: quotes.length,
               itemBuilder: (context, index){
                 return Card(
-                  color: Colors.grey[800],
+                  color: Colors.grey[900],
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 10.0),
                     child: Column(
