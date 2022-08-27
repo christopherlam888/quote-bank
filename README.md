@@ -6,7 +6,7 @@ View your quotes in a scrollable list of tiles each displaying the quote content
 
 Easily add a new quote by pressing the + button and entering the quote information.
 
-Delete a quote with a simple click of a button.
+Copy or delete a quote with a simple click of a button.
 
 ***
 
@@ -14,6 +14,7 @@ Features to implement:
 - Edit existing quotes
 - Easily import and export list of quotes
 - Toggle light and dark mode (currently set to dark mode)
+- Categorize and filter quotes
 
 ***
 
