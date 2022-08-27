@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quote_bank/classes/quote.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -101,14 +102,24 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  quotes.remove(quotes[index]);
-                                  saveData();
-                                });
-                              },
-                              icon: Icon(Icons.delete, color: Colors.white),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Clipboard.setData(ClipboardData(text: quotes[index].text));
+                                  },
+                                  icon: Icon(Icons.content_copy, color: Colors.white),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      quotes.remove(quotes[index]);
+                                      saveData();
+                                    });
+                                  },
+                                  icon: Icon(Icons.delete, color: Colors.white),
+                                ),
+                              ],
                             ),
                           ],
                         ),
