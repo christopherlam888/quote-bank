@@ -66,69 +66,66 @@ class _HomeState extends State<Home> {
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
-          child: Container(
-            color: Colors.black,
-            child: ListView.builder(
-              itemCount: quotes.length,
-              itemBuilder: (context, index){
-                return Card(
-                  color: Colors.grey[900],
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 10.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                quotes[index].text,
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.white,
-                                ),
+          child: ListView.builder(
+            itemCount: quotes.length,
+            itemBuilder: (context, index){
+              return Card(
+                color: Colors.grey[900],
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 10.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              quotes[index].text,
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Text(
-                                " - ${quotes[index].author}",
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.white,
-                                ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              " - ${quotes[index].author}",
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                color: Colors.white,
                               ),
                             ),
-                            Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Clipboard.setData(ClipboardData(text: quotes[index].text));
-                                  },
-                                  icon: Icon(Icons.content_copy, color: Colors.white),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      quotes.remove(quotes[index]);
-                                      saveData();
-                                    });
-                                  },
-                                  icon: Icon(Icons.delete, color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Clipboard.setData(ClipboardData(text: quotes[index].text));
+                                },
+                                icon: Icon(Icons.content_copy, color: Colors.white),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    quotes.remove(quotes[index]);
+                                    saveData();
+                                  });
+                                },
+                                icon: Icon(Icons.delete, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

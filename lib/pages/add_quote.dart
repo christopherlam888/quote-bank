@@ -25,7 +25,7 @@ class _AddQuoteState extends State<AddQuote> {
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: [
               Text(
                 "Please enter the quote information:",
@@ -36,6 +36,9 @@ class _AddQuoteState extends State<AddQuote> {
               ),
               SizedBox(height: 20.0),
               TextField(
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 10,
                 controller: textController,
                 decoration: InputDecoration(
                   hintText: "Enter a quote",
@@ -62,6 +65,9 @@ class _AddQuoteState extends State<AddQuote> {
               ),
               SizedBox(height: 10.0),
               TextField(
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 3,
                 controller: authorController,
                 decoration: InputDecoration(
                   hintText: "Enter the quote author",
