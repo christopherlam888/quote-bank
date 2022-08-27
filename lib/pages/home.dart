@@ -48,6 +48,12 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.indigo[800],
         title: Text("My Quote Bank"),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/about');
+            },
+            icon: Icon(Icons.info)
+        ),
         actions: [
           IconButton(
               onPressed: () async {
