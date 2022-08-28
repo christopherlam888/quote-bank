@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatefulWidget {
   @override
@@ -18,37 +19,80 @@ class _AboutState extends State<About> {
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              children: [
-                Text(
-                  "Quote Bank",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Colors.white,
-                  ),
+          child: ListView(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Image(
+                      image: AssetImage('assets/logo.png'),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      "Quote Bank",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      "Developed by Christopher Lam",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      "A simple application to store and save your favourite quotes.",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      "This project is licensed under the GNU General Public License v3.0.",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      "See the project source code here:",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: launchURL,
+                      child: Text(
+                        "Github",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20.0),
-                Text(
-                  "Developed by Christopher Lam",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                Text(
-                  "A simple application to store and save your favourite quotes.",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+}
+
+launchURL() async {
+  const url = 'https://github.com/christopherlam888/quote_bank';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

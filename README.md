@@ -19,3 +19,7 @@ Features to implement:
 ***
 
 Note this application was developed before introduction of null safety in the Dart programming language. Please use Flutter SDK version 1.22.6 or older.
+
+***
+
+This project is licensed under the GNU General Public License v3.0.
