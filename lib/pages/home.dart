@@ -40,6 +40,85 @@ class _HomeState extends State<Home> {
     setState(() {});
   }
 
+  void edit(int index) {
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        final quote = quotes[index];
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          content: Column(
+            children: [
+              TextFormField(
+                initialValue: quotes[index].text,
+                onChanged: (text) {
+                  if (text.isNotEmpty){
+                    setState(() {
+                      quotes[index].text = text;
+                      saveData();
+                    });
+                  }
+                },
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 10,
+                decoration: InputDecoration(
+                  labelText:"Quote",
+                  labelStyle: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.indigo[400],
+                      width: 3,
+                    ),
+                  ),
+                  fillColor: Colors.grey[800],
+                  filled: true,
+                ),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 10.0),
+              TextFormField(
+                initialValue: quotes[index].author,
+                onChanged: (author) {
+                  setState(() {
+                    quotes[index].author = author;
+                    saveData();
+                  });
+                },
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText:"Author",
+                  labelStyle: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.indigo[400],
+                      width: 3,
+                    ),
+                  ),
+                  fillColor: Colors.grey[800],
+                  filled: true,
+                ),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,6 +187,12 @@ class _HomeState extends State<Home> {
                           ),
                           Row(
                             children: [
+                              IconButton(
+                                onPressed: () {
+                                  edit(index);
+                                },
+                                icon: Icon(Icons.edit, color: Colors.white),
+                              ),
                               IconButton(
                                 onPressed: () {
                                   Clipboard.setData(ClipboardData(text: quotes[index].text));

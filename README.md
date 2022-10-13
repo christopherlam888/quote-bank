@@ -11,7 +11,7 @@ Copy or delete a quote with a simple click of a button.
 ***
 
 Features to implement:
-- Edit existing quotes
+- Reorder list of quotes
 - Easily import and export list of quotes
 - Toggle light and dark mode (currently set to dark mode)
 - Categorize and filter quotes
