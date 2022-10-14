@@ -89,7 +89,7 @@ class _AboutState extends State<About> {
 }
 
 launchURL() async {
-  const url = 'https://github.com/christopherlam888/quote_bank';
+  const url = 'https://github.com/christopherlam888/quote-bank';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
