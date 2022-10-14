@@ -41,79 +41,83 @@ class _HomeState extends State<Home> {
   }
 
   void edit(int index) {
-
     showDialog(
       context: context,
       builder: (context) {
-        final quote = quotes[index];
         return AlertDialog(
           backgroundColor: Colors.black,
-          content: Column(
-            children: [
-              TextFormField(
-                initialValue: quotes[index].text,
-                onChanged: (text) {
-                  if (text.isNotEmpty){
-                    setState(() {
-                      quotes[index].text = text;
-                      saveData();
-                    });
-                  }
-                },
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 10,
-                decoration: InputDecoration(
-                  labelText:"Quote",
-                  labelStyle: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.indigo[400],
-                      width: 3,
+          content: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: 5.0),
+                  TextFormField(
+                    initialValue: quotes[index].text,
+                    onChanged: (text) {
+                      if (text.isNotEmpty){
+                        setState(() {
+                          quotes[index].text = text;
+                          saveData();
+                        });
+                      }
+                    },
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: 10,
+                    decoration: InputDecoration(
+                      labelText:"Quote",
+                      labelStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.indigo[400],
+                          width: 3,
+                        ),
+                      ),
+                      fillColor: Colors.grey[800],
+                      filled: true,
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
-                  fillColor: Colors.grey[800],
-                  filled: true,
-                ),
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 10.0),
-              TextFormField(
-                initialValue: quotes[index].author,
-                onChanged: (author) {
-                  setState(() {
-                    quotes[index].author = author;
-                    saveData();
-                  });
-                },
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 3,
-                decoration: InputDecoration(
-                  labelText:"Author",
-                  labelStyle: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.indigo[400],
-                      width: 3,
+                  SizedBox(height: 10.0),
+                  TextFormField(
+                    initialValue: quotes[index].author,
+                    onChanged: (author) {
+                      setState(() {
+                        quotes[index].author = author;
+                        saveData();
+                      });
+                    },
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      labelText:"Author",
+                      labelStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.indigo[400],
+                          width: 3,
+                        ),
+                      ),
+                      fillColor: Colors.grey[800],
+                      filled: true,
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
-                  fillColor: Colors.grey[800],
-                  filled: true,
-                ),
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         );      }
     );
