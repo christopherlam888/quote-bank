@@ -6,7 +6,21 @@ View your quotes in a scrollable list of tiles each displaying the quote content
 
 Easily add a new quote by pressing the + button and entering the quote information.
 
+Edit an existing quote by pressing the edit button.
+
 Copy or delete a quote with a simple click of a button.
+
+***
+
+Screenshots: 
+
+![Quote Bank 1](https://user-images.githubusercontent.com/85356197/197373107-7f60ea29-d297-435f-ac38-6ab9ea25de33.png)
+
+![Quote Bank 2](https://user-images.githubusercontent.com/85356197/197373109-371dcf1d-98f5-4093-b2b2-827bb0b4b71e.png)
+
+![Quote Bank 3](https://user-images.githubusercontent.com/85356197/197373111-5c017c86-478e-403b-851d-954fea02e702.png)
+
+![Quote Bank 4](https://user-images.githubusercontent.com/85356197/197373113-996fd6a7-05d4-471e-9a0b-f7895343b169.png)
 
 ***
 
