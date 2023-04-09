@@ -24,7 +24,6 @@
 
 - Reorder list of quotes
 - Easily import and export list of quotes
-- Toggle light and dark mode (currently set to dark mode)
 - Categorize and filter quotes
 
 ## License
