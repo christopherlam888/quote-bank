@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).colorScheme.background,
           content: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                       labelText:"Quote",
                       labelStyle: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -77,11 +77,11 @@ class _HomeState extends State<Home> {
                           width: 3,
                         ),
                       ),
-                      fillColor: Colors.grey[800],
+                      fillColor: Theme.of(context).colorScheme.secondary,
                       filled: true,
                     ),
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   SizedBox(height: 10.0),
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                       labelText:"Author",
                       labelStyle: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -108,11 +108,11 @@ class _HomeState extends State<Home> {
                           width: 3,
                         ),
                       ),
-                      fillColor: Colors.grey[800],
+                      fillColor: Theme.of(context).colorScheme.secondary,
                       filled: true,
                     ),
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ],
@@ -126,16 +126,20 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.indigo[800],
-        title: Text("My Quote Bank"),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        title: Text(
+            "My Quote Bank",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Navigator.pushNamed(context, '/about');
             },
-            icon: Icon(Icons.info)
+            icon: Icon(Icons.info, color: Theme.of(context).colorScheme.primary)
         ),
         actions: [
           IconButton(
@@ -147,19 +151,19 @@ class _HomeState extends State<Home> {
                   saveData();
                 });
               },
-              icon: Icon(Icons.add)
+              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.primary)
           ),
         ],
       ),
       body: Container(
-        color: Colors.black,
+        color: Theme.of(context).colorScheme.background,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
           child: ListView.builder(
             itemCount: quotes.length,
             itemBuilder: (context, index){
               return Card(
-                color: Colors.grey[900],
+                color: Theme.of(context).colorScheme.secondary,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 10.0),
                   child: Column(
@@ -171,7 +175,7 @@ class _HomeState extends State<Home> {
                               quotes[index].text,
                               style: TextStyle(
                                 fontSize: 18.0,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ),
@@ -185,7 +189,7 @@ class _HomeState extends State<Home> {
                               " - ${quotes[index].author}",
                               style: TextStyle(
                                 fontSize: 15.0,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ),
@@ -195,13 +199,13 @@ class _HomeState extends State<Home> {
                                 onPressed: () {
                                   edit(index);
                                 },
-                                icon: Icon(Icons.edit, color: Colors.white),
+                                icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
                               ),
                               IconButton(
                                 onPressed: () {
                                   Clipboard.setData(ClipboardData(text: quotes[index].text));
                                 },
-                                icon: Icon(Icons.content_copy, color: Colors.white),
+                                icon: Icon(Icons.content_copy, color: Theme.of(context).colorScheme.primary),
                               ),
                               IconButton(
                                 onPressed: () {
@@ -210,7 +214,7 @@ class _HomeState extends State<Home> {
                                     saveData();
                                   });
                                 },
-                                icon: Icon(Icons.delete, color: Colors.white),
+                                icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.primary),
                               ),
                             ],
                           ),

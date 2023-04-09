@@ -16,7 +16,7 @@ class _AboutState extends State<About> {
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.black,
+        color: Theme.of(context).colorScheme.background,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
@@ -32,7 +32,7 @@ class _AboutState extends State<About> {
                       "Quote Bank",
                       style: TextStyle(
                         fontSize: 30.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -40,7 +40,7 @@ class _AboutState extends State<About> {
                       "Developed by Christopher Lam",
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -48,7 +48,7 @@ class _AboutState extends State<About> {
                       "A simple application to store and save your favourite quotes.",
                       style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -56,7 +56,7 @@ class _AboutState extends State<About> {
                       "This project is licensed under the GNU General Public License v3.0.",
                       style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -64,7 +64,7 @@ class _AboutState extends State<About> {
                       "See the project source code here:",
                       style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     FlatButton(
@@ -73,7 +73,7 @@ class _AboutState extends State<About> {
                         "Github",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),

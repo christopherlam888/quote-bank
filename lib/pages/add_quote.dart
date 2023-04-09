@@ -22,7 +22,7 @@ class _AddQuoteState extends State<AddQuote> {
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.black,
+        color: Theme.of(context).colorScheme.background,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
@@ -31,7 +31,7 @@ class _AddQuoteState extends State<AddQuote> {
                 "Please enter the quote information:",
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               SizedBox(height: 20.0),
@@ -43,12 +43,12 @@ class _AddQuoteState extends State<AddQuote> {
                 decoration: InputDecoration(
                   hintText: "Enter a quote",
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   labelText:"Quote",
                   labelStyle: TextStyle(
                     fontSize: 20.0,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -56,11 +56,11 @@ class _AddQuoteState extends State<AddQuote> {
                       width: 3,
                     ),
                   ),
-                  fillColor: Colors.grey[800],
+                  fillColor: Theme.of(context).colorScheme.secondary,
                   filled: true,
                 ),
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               SizedBox(height: 10.0),
@@ -72,12 +72,12 @@ class _AddQuoteState extends State<AddQuote> {
                 decoration: InputDecoration(
                   hintText: "Enter the quote author",
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   labelText:"Author",
                   labelStyle: TextStyle(
                     fontSize: 20.0,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -85,11 +85,11 @@ class _AddQuoteState extends State<AddQuote> {
                       width: 3,
                     ),
                   ),
-                  fillColor: Colors.grey[800],
+                  fillColor: Theme.of(context).colorScheme.secondary,
                   filled: true,
                 ),
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               SizedBox(height: 15.0),
