@@ -130,16 +130,13 @@ class _HomeState extends State<Home> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
             "My Quote Bank",
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-          ),
         ),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Navigator.pushNamed(context, '/about');
             },
-            icon: Icon(Icons.info, color: Theme.of(context).colorScheme.primary)
+            icon: Icon(Icons.info),
         ),
         actions: [
           IconButton(
@@ -151,7 +148,7 @@ class _HomeState extends State<Home> {
                   saveData();
                 });
               },
-              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.primary)
+              icon: Icon(Icons.add),
           ),
         ],
       ),
