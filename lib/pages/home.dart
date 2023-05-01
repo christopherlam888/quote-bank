@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quote_bank/classes/quote.dart';
+import 'package:quote_bank/pages/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -132,12 +133,6 @@ class _HomeState extends State<Home> {
             "My Quote Bank",
         ),
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/about');
-            },
-            icon: Icon(Icons.info),
-        ),
         actions: [
           IconButton(
               onPressed: () async {
@@ -152,6 +147,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+      drawer: NavBar(),
       body: Container(
         color: Theme.of(context).colorScheme.background,
         child: Padding(
