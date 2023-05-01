@@ -19,6 +19,8 @@ class _HomeState extends State<Home> {
           author: "Plato"),
   ];
 
+  bool showControls = false;
+
   SharedPreferences sharedPreferences;
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _HomeState extends State<Home> {
   initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     loadData();
+    showControls = sharedPreferences.getBool('showControls');
   }
 
   void saveData(){
@@ -145,6 +148,15 @@ class _HomeState extends State<Home> {
               },
               icon: Icon(Icons.add),
           ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                showControls = !showControls;
+                sharedPreferences.setBool('showControls', showControls);
+              });
+            },
+            icon: Icon(Icons.build),
+          ),
         ],
       ),
       drawer: NavBar(),
@@ -175,7 +187,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,66 +203,78 @@ class _HomeState extends State<Home> {
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (index != 0) {
-                                      Quote temp = quotes[index];
-                                      quotes[index] = quotes[index-1];
-                                      quotes[index-1] = temp;
-                                      saveData();
-                                    }
-                                  });
-                                },
-                                icon: Icon(Icons.arrow_upward, color: Theme.of(context).colorScheme.primary),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (index != quotes.length-1) {
-                                      Quote temp = quotes[index];
-                                      quotes[index] = quotes[index+1];
-                                      quotes[index+1] = temp;
-                                      saveData();
-                                    }
-                                  });
-                                },
-                                icon: Icon(Icons.arrow_downward, color: Theme.of(context).colorScheme.primary),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  edit(index);
-                                },
-                                icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  Clipboard.setData(ClipboardData(text: quotes[index].text));
-                                },
-                                icon: Icon(Icons.content_copy, color: Theme.of(context).colorScheme.primary),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    quotes.remove(quotes[index]);
-                                    saveData();
-                                  });
-                                },
-                                icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.primary),
-                              ),
-                            ],
-                          ),
-                        ],
+                      SizedBox(
+                        height: 5.0,
                       ),
+                      if (showControls) ...[
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Divider(
+                          height: 5.0,
+                          color: Theme.of(context).colorScheme.primary
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (index != 0) {
+                                        Quote temp = quotes[index];
+                                        quotes[index] = quotes[index-1];
+                                        quotes[index-1] = temp;
+                                        saveData();
+                                      }
+                                    });
+                                  },
+                                  icon: Icon(Icons.arrow_upward, color: Theme.of(context).colorScheme.primary),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (index != quotes.length-1) {
+                                        Quote temp = quotes[index];
+                                        quotes[index] = quotes[index+1];
+                                        quotes[index+1] = temp;
+                                        saveData();
+                                      }
+                                    });
+                                  },
+                                  icon: Icon(Icons.arrow_downward, color: Theme.of(context).colorScheme.primary),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    edit(index);
+                                  },
+                                  icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Clipboard.setData(ClipboardData(text: quotes[index].text));
+                                  },
+                                  icon: Icon(Icons.content_copy, color: Theme.of(context).colorScheme.primary),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      quotes.remove(quotes[index]);
+                                      saveData();
+                                    });
+                                  },
+                                  icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.primary),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ]
                     ],
                   ),
                 ),
