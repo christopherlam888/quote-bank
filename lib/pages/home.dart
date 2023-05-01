@@ -178,6 +178,9 @@ class _HomeState extends State<Home> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -189,6 +192,41 @@ class _HomeState extends State<Home> {
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (index != 0) {
+                                      Quote temp = quotes[index];
+                                      quotes[index] = quotes[index-1];
+                                      quotes[index-1] = temp;
+                                      saveData();
+                                    }
+                                  });
+                                },
+                                icon: Icon(Icons.arrow_upward, color: Theme.of(context).colorScheme.primary),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (index != quotes.length-1) {
+                                      Quote temp = quotes[index];
+                                      quotes[index] = quotes[index+1];
+                                      quotes[index+1] = temp;
+                                      saveData();
+                                    }
+                                  });
+                                },
+                                icon: Icon(Icons.arrow_downward, color: Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
                           ),
                           Row(
                             children: [
