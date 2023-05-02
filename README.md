@@ -22,7 +22,6 @@
 
 ## Features To Implement
 
-- Reorder list of quotes
 - Easily import and export list of quotes
 - Categorize and filter quotes
 
