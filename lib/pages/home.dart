@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
   initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     loadData();
-    showControls = sharedPreferences.getBool('showControls');
   }
 
   void saveData(){
@@ -41,6 +40,7 @@ class _HomeState extends State<Home> {
   void loadData(){
     List<String> spList = sharedPreferences.getStringList('list');
     quotes = spList.map((item) => Quote.fromMap(json.decode(item))).toList();
+    showControls = sharedPreferences.getBool('showControls') ?? false;
     setState(() {});
   }
 
