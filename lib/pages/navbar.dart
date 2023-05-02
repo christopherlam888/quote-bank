@@ -9,18 +9,18 @@ class NavBar extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         child: ListView(
           children: [
-            ListTile(
-              leading: Icon(Icons.settings, color: Theme.of(context).colorScheme.primary),
-              title: Text(
-                "Settings",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/settings');
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.settings, color: Theme.of(context).colorScheme.primary),
+            //   title: Text(
+            //     "Settings",
+            //     style: TextStyle(
+            //       color: Theme.of(context).colorScheme.primary,
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     Navigator.pushNamed(context, '/settings');
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.info, color: Theme.of(context).colorScheme.primary),
               title: Text(
