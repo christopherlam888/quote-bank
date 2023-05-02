@@ -7,7 +7,6 @@ class AddQuote extends StatefulWidget {
 }
 
 class _AddQuoteState extends State<AddQuote> {
-
   TextEditingController textController = TextEditingController();
   TextEditingController authorController = TextEditingController();
   String errorMessage = " ";
@@ -45,7 +44,7 @@ class _AddQuoteState extends State<AddQuote> {
                   hintStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  labelText:"Quote",
+                  labelText: "Quote",
                   labelStyle: TextStyle(
                     fontSize: 20.0,
                     color: Theme.of(context).colorScheme.primary,
@@ -74,7 +73,7 @@ class _AddQuoteState extends State<AddQuote> {
                   hintStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  labelText:"Author",
+                  labelText: "Author",
                   labelStyle: TextStyle(
                     fontSize: 20.0,
                     color: Theme.of(context).colorScheme.primary,
@@ -96,22 +95,20 @@ class _AddQuoteState extends State<AddQuote> {
               RaisedButton(
                 padding: EdgeInsets.all(10.0),
                 color: Colors.indigo[400],
-                child: Text(
-                    "Enter",
+                child: Text("Enter",
                     style: TextStyle(
                       fontSize: 15.0,
                       color: Colors.white,
-                    )
-                ),
+                    )),
                 onPressed: () {
-                  if (textController.text.isEmpty){
+                  if (textController.text.isEmpty) {
                     setState(() {
                       errorMessage = "Please enter a quote!";
                     });
                   } else {
                     Navigator.pop(context, {
-                      'text' : textController.text,
-                      'author' : authorController.text,
+                      'text': textController.text,
+                      'author': authorController.text,
                     });
                   }
                 },

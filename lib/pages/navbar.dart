@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -22,7 +21,8 @@ class NavBar extends StatelessWidget {
             //   },
             // ),
             ListTile(
-              leading: Icon(Icons.info, color: Theme.of(context).colorScheme.primary),
+              leading: Icon(Icons.info,
+                  color: Theme.of(context).colorScheme.primary),
               title: Text(
                 "About",
                 style: TextStyle(

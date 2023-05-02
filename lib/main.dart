@@ -13,10 +13,9 @@ void main() {
       debugShowCheckedModeBanner: false,
       initialRoute: '/home',
       routes: {
-        '/home' : (context) => Home(),
-        '/addQuote' : (context) => AddQuote(),
-        '/settings' : (context) => Settings(),
-        '/about' : (context) => About(),
-      }
-  ));
+        '/home': (context) => Home(),
+        '/addQuote': (context) => AddQuote(),
+        '/settings': (context) => Settings(),
+        '/about': (context) => About(),
+      }));
 }

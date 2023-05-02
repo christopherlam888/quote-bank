@@ -11,33 +11,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   List<Quote> quotes = [
-    Quote(text: "The best way to find out if you can trust someone is to trust them.",
-          author: "Ernest Hemingway"),
-    Quote(text: "Life without examination is not worth living.",
-          author: "Plato"),
+    Quote(
+        text:
+            "The best way to find out if you can trust someone is to trust them.",
+        author: "Ernest Hemingway"),
+    Quote(
+        text: "Life without examination is not worth living.", author: "Plato"),
   ];
 
   bool showControls = false;
 
   SharedPreferences sharedPreferences;
+
   @override
   void initState() {
     initSharedPreferences();
     super.initState();
   }
+
   initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     loadData();
   }
 
-  void saveData(){
-    List<String> spList = quotes.map((item) => json.encode(item.toMap())).toList();
+  void saveData() {
+    List<String> spList =
+        quotes.map((item) => json.encode(item.toMap())).toList();
     sharedPreferences.setStringList('list', spList);
   }
 
-  void loadData(){
+  void loadData() {
     List<String> spList = sharedPreferences.getStringList('list');
     quotes = spList.map((item) => Quote.fromMap(json.decode(item))).toList();
     showControls = sharedPreferences.getBool('showControls') ?? false;
@@ -46,85 +50,85 @@ class _HomeState extends State<Home> {
 
   void edit(int index) {
     showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          content: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: 5.0),
-                  TextFormField(
-                    initialValue: quotes[index].text,
-                    onChanged: (text) {
-                      if (text.isNotEmpty){
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            content: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 5.0),
+                    TextFormField(
+                      initialValue: quotes[index].text,
+                      onChanged: (text) {
+                        if (text.isNotEmpty) {
+                          setState(() {
+                            quotes[index].text = text;
+                            saveData();
+                          });
+                        }
+                      },
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 10,
+                      decoration: InputDecoration(
+                        labelText: "Quote",
+                        labelStyle: TextStyle(
+                          fontSize: 20.0,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo[400],
+                            width: 3,
+                          ),
+                        ),
+                        fillColor: Theme.of(context).colorScheme.secondary,
+                        filled: true,
+                      ),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    TextFormField(
+                      initialValue: quotes[index].author,
+                      onChanged: (author) {
                         setState(() {
-                          quotes[index].text = text;
+                          quotes[index].author = author;
                           saveData();
                         });
-                      }
-                    },
-                    keyboardType: TextInputType.multiline,
-                    minLines: 1,
-                    maxLines: 10,
-                    decoration: InputDecoration(
-                      labelText:"Quote",
-                      labelStyle: TextStyle(
-                        fontSize: 20.0,
+                      },
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 3,
+                      decoration: InputDecoration(
+                        labelText: "Author",
+                        labelStyle: TextStyle(
+                          fontSize: 20.0,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo[400],
+                            width: 3,
+                          ),
+                        ),
+                        fillColor: Theme.of(context).colorScheme.secondary,
+                        filled: true,
+                      ),
+                      style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.indigo[400],
-                          width: 3,
-                        ),
-                      ),
-                      fillColor: Theme.of(context).colorScheme.secondary,
-                      filled: true,
                     ),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  TextFormField(
-                    initialValue: quotes[index].author,
-                    onChanged: (author) {
-                      setState(() {
-                        quotes[index].author = author;
-                        saveData();
-                      });
-                    },
-                    keyboardType: TextInputType.multiline,
-                    minLines: 1,
-                    maxLines: 3,
-                    decoration: InputDecoration(
-                      labelText:"Author",
-                      labelStyle: TextStyle(
-                        fontSize: 20.0,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.indigo[400],
-                          width: 3,
-                        ),
-                      ),
-                      fillColor: Theme.of(context).colorScheme.secondary,
-                      filled: true,
-                    ),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        );      }
-    );
+          );
+        });
   }
 
   @override
@@ -133,20 +137,21 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
-            "My Quote Bank",
+          "My Quote Bank",
         ),
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () async {
-                dynamic result = await Navigator.pushNamed(context, '/addQuote');
-                setState(() {
-                  Quote newQuote = Quote(text: result['text'], author: result['author']);
-                  quotes.add(newQuote);
-                  saveData();
-                });
-              },
-              icon: Icon(Icons.add),
+            onPressed: () async {
+              dynamic result = await Navigator.pushNamed(context, '/addQuote');
+              setState(() {
+                Quote newQuote =
+                    Quote(text: result['text'], author: result['author']);
+                quotes.add(newQuote);
+                saveData();
+              });
+            },
+            icon: Icon(Icons.add),
           ),
           IconButton(
             onPressed: () {
@@ -166,7 +171,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
           child: ListView.builder(
             itemCount: quotes.length,
-            itemBuilder: (context, index){
+            itemBuilder: (context, index) {
               return Card(
                 color: Theme.of(context).colorScheme.secondary,
                 child: Padding(
@@ -211,9 +216,8 @@ class _HomeState extends State<Home> {
                           height: 5.0,
                         ),
                         Divider(
-                          height: 5.0,
-                          color: Theme.of(context).colorScheme.primary
-                        ),
+                            height: 5.0,
+                            color: Theme.of(context).colorScheme.primary),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -221,29 +225,35 @@ class _HomeState extends State<Home> {
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      if (index != 0) {
+                                    if (index != 0) {
+                                      setState(() {
                                         Quote temp = quotes[index];
-                                        quotes[index] = quotes[index-1];
-                                        quotes[index-1] = temp;
+                                        quotes[index] = quotes[index - 1];
+                                        quotes[index - 1] = temp;
                                         saveData();
-                                      }
-                                    });
+                                      });
+                                    }
                                   },
-                                  icon: Icon(Icons.arrow_upward, color: Theme.of(context).colorScheme.primary),
+                                  icon: Icon(Icons.arrow_upward,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                                 IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      if (index != quotes.length-1) {
+                                    if (index != quotes.length - 1) {
+                                      setState(() {
                                         Quote temp = quotes[index];
-                                        quotes[index] = quotes[index+1];
-                                        quotes[index+1] = temp;
+                                        quotes[index] = quotes[index + 1];
+                                        quotes[index + 1] = temp;
                                         saveData();
-                                      }
-                                    });
+                                      });
+                                    }
                                   },
-                                  icon: Icon(Icons.arrow_downward, color: Theme.of(context).colorScheme.primary),
+                                  icon: Icon(Icons.arrow_downward,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                               ],
                             ),
@@ -253,13 +263,20 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     edit(index);
                                   },
-                                  icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
+                                  icon: Icon(Icons.edit,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                                 IconButton(
                                   onPressed: () {
-                                    Clipboard.setData(ClipboardData(text: quotes[index].text));
+                                    Clipboard.setData(ClipboardData(
+                                        text: quotes[index].text));
                                   },
-                                  icon: Icon(Icons.content_copy, color: Theme.of(context).colorScheme.primary),
+                                  icon: Icon(Icons.content_copy,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                                 IconButton(
                                   onPressed: () {
@@ -268,7 +285,10 @@ class _HomeState extends State<Home> {
                                       saveData();
                                     });
                                   },
-                                  icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.primary),
+                                  icon: Icon(Icons.delete,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                               ],
                             ),
