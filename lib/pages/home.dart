@@ -216,26 +216,42 @@ class _HomeState extends State<Home> {
             },
             icon: Icon(Icons.add),
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                showControls = !showControls;
-                sharedPreferences.setBool('showControls', showControls);
-              });
-            },
-            icon: Icon(Icons.build),
-          ),
-          IconButton(
-            onPressed: () {
-              saveCsvFile();
-            },
-            icon: Icon(Icons.download_sharp),
-          ),
-          IconButton(
-            onPressed: () {
-              loadCsvFile();
-            },
-            icon: Icon(Icons.refresh),
+          PopupMenuButton(
+            color: Theme.of(context)
+                .colorScheme
+                .background,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      showControls = !showControls;
+                      sharedPreferences.setBool('showControls', showControls);
+                    });
+                  },
+                  icon: Icon(Icons.build),
+                ),
+                value: 1,
+              ),
+              PopupMenuItem(
+                child: IconButton(
+                  onPressed: () {
+                    saveCsvFile();
+                  },
+                  icon: Icon(Icons.download_sharp),
+                ),
+                value: 2,
+              ),
+              PopupMenuItem(
+                child: IconButton(
+                  onPressed: () {
+                    loadCsvFile();
+                  },
+                  icon: Icon(Icons.refresh),
+                ),
+                value: 3,
+              )
+            ]
           ),
         ],
       ),
