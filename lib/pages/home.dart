@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                       Row(
                         children: [
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               quotes[index].text,
                               style: TextStyle(
                                 fontSize: 18.0,
@@ -198,7 +198,7 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               " - ${quotes[index].author}",
                               style: TextStyle(
                                 fontSize: 15.0,
