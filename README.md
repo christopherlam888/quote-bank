@@ -22,7 +22,6 @@
 
 ## Features To Implement
 
-- Easily import and export list of quotes
 - Categorize and filter quotes
 
 ## License

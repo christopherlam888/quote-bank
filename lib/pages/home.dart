@@ -4,6 +4,10 @@ import 'package:quote_bank/pages/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:csv/csv.dart';
+import 'package:ext_storage/ext_storage.dart';
+import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -46,6 +50,65 @@ class _HomeState extends State<Home> {
     quotes = spList.map((item) => Quote.fromMap(json.decode(item))).toList();
     showControls = sharedPreferences.getBool('showControls') ?? false;
     setState(() {});
+  }
+
+  void saveCsvFile() async {
+    Map<Permission,  PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+
+    List<List<dynamic>> rows =  [];
+
+    List<dynamic> row = [];
+    row.add("text");
+    row.add("author");
+    rows.add(row);
+    for (int i = 0; i  < quotes.length; i++) {
+      List<dynamic> row = [];
+      row.add(quotes[i].text);
+      row.add(quotes[i].author);
+      rows.add(row);
+    }
+
+    String csv =  const  ListToCsvConverter().convert(rows);
+
+    String dir = await  ExtStorage.getExternalStoragePublicDirectory(
+        ExtStorage.DIRECTORY_DOWNLOADS);
+    print("dir $dir");
+    String file =  "$dir";
+
+    File f = File(file +  "/quotes.csv");
+
+    f.writeAsString(csv);
+
+  }
+
+  void loadCsvFile() async {
+    Map<Permission,  PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+
+    String dir = await  ExtStorage.getExternalStoragePublicDirectory(
+        ExtStorage.DIRECTORY_DOWNLOADS);
+    print("dir $dir");
+    String file =  "$dir";
+
+    File f = File(file +  "/quotes.csv");
+
+    String csv = await f.readAsString();
+
+    List<List<dynamic>> rows =  CsvToListConverter().convert(csv);
+
+    List<Quote> newQuotes = [];
+
+    for (int i = 1; i < rows.length; i++) {
+      newQuotes.add(Quote(text: rows[i][0].toString(), author: rows[i][1].toString()));
+    }
+
+    quotes = newQuotes;
+
+    setState(() {});
+
   }
 
   void edit(int index) {
@@ -161,6 +224,18 @@ class _HomeState extends State<Home> {
               });
             },
             icon: Icon(Icons.build),
+          ),
+          IconButton(
+            onPressed: () {
+              saveCsvFile();
+            },
+            icon: Icon(Icons.download_sharp),
+          ),
+          IconButton(
+            onPressed: () {
+              loadCsvFile();
+            },
+            icon: Icon(Icons.refresh),
           ),
         ],
       ),
