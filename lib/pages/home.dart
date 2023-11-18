@@ -219,7 +219,8 @@ class _HomeState extends State<Home> {
           PopupMenuButton(
             color: Theme.of(context)
                 .colorScheme
-                .background,
+                .secondary,
+            offset: Offset(0, 50),
             itemBuilder: (context) => [
               PopupMenuItem(
                 child: IconButton(
