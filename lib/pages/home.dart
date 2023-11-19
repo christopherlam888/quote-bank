@@ -230,7 +230,10 @@ class _HomeState extends State<Home> {
                       sharedPreferences.setBool('showControls', showControls);
                     });
                   },
-                  icon: Icon(Icons.build),
+                  icon: Icon(Icons.build,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary),
                 ),
                 value: 1,
               ),
@@ -239,7 +242,10 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     saveCsvFile();
                   },
-                  icon: Icon(Icons.download_sharp),
+                  icon: Icon(Icons.download_sharp,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary),
                 ),
                 value: 2,
               ),
@@ -248,7 +254,10 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     loadCsvFile();
                   },
-                  icon: Icon(Icons.refresh),
+                  icon: Icon(Icons.refresh,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary),
                 ),
                 value: 3,
               )

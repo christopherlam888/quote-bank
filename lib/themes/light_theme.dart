@@ -9,5 +9,8 @@ class LightTheme {
       background: Colors.white,
       surface: Colors.indigo[300],
     ),
+    textSelectionColor: Colors.indigo[300],
+    textSelectionHandleColor: Colors.indigo[300],
+    cursorColor: Colors.indigo[300],
   );
 }
