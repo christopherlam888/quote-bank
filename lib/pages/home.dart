@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
     setState(() {});
   }
 
-  void saveCsvFile() async {
+  Future<bool> saveCsvFile() async {
     Map<Permission,  PermissionStatus> statuses = await [
       Permission.storage,
     ].request();
@@ -81,9 +81,11 @@ class _HomeState extends State<Home> {
 
     f.writeAsString(csv);
 
+    return true;
+
   }
 
-  void loadCsvFile() async {
+  Future<bool> loadCsvFile() async {
     Map<Permission,  PermissionStatus> statuses = await [
       Permission.storage,
     ].request();
@@ -108,6 +110,8 @@ class _HomeState extends State<Home> {
     quotes = newQuotes;
 
     setState(() {});
+
+    return true;
 
   }
 
@@ -240,7 +244,12 @@ class _HomeState extends State<Home> {
               PopupMenuItem(
                 child: IconButton(
                   onPressed: () {
-                    saveCsvFile();
+                    saveCsvFile().then((result) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("quotes.csv saved in Downloads"),
+                          duration: Duration(seconds: 2)
+                      ));
+                    } );
                   },
                   icon: Icon(Icons.download_sharp,
                       color: Theme.of(context)
@@ -252,7 +261,12 @@ class _HomeState extends State<Home> {
               PopupMenuItem(
                 child: IconButton(
                   onPressed: () {
-                    loadCsvFile();
+                    loadCsvFile().then((result) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("quotes.csv loaded from Downloads"),
+                          duration: Duration(seconds: 2)
+                      ));
+                    } );
                   },
                   icon: Icon(Icons.refresh,
                       color: Theme.of(context)
